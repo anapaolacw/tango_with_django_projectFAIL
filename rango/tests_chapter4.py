@@ -9,7 +9,7 @@
 # 
 
 #
-# In order to run these tests, copy this module to your tango_with_django_project/rango/ directory.
+# In order to run these tests, copy this module to your tnago_with_django_project/rango/ directory.
 # Once this is complete, run $ python manage.py test rango.tests_chapter4
 # 
 # The tests will then be run, and the output displayed -- do you pass them all?
@@ -184,7 +184,7 @@ class Chapter4StaticMediaTests(TestCase):
         
         expected_path = os.path.normpath(self.media_dir)
         media_path = os.path.normpath(settings.MEDIA_DIR)
-        self.assertEqual(expected_path, media_path, f"{FAILURE_HEADER}The MEDIA_DIR setting does not point to the correct path. Remember, it should have an absolute reference to tango_with_django_project/media/.{FAILURE_FOOTER}")
+        self.assertEqual(expected_path, media_path, f"{FAILURE_HEADER}The MEDIA_DIR setting does not point to the correct path. Remember, it should have an absolute reference to tnago_with_django_project/media/.{FAILURE_FOOTER}")
         
         media_root_exists = 'MEDIA_ROOT' in dir(settings)
         self.assertTrue(media_root_exists, f"{FAILURE_HEADER}The MEDIA_ROOT setting has not been defined.{FAILURE_FOOTER}")
