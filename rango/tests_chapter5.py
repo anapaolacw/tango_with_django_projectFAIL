@@ -60,18 +60,18 @@ class Chapter5DatabaseConfigurationTests(TestCase):
         """
         self.assertTrue(settings.DATABASES, f"{FAILURE_HEADER}Your project's settings module does not have a DATABASES variable, which is required. Check the start of Chapter 5.{FAILURE_FOOTER}")
         self.assertTrue('default' in settings.DATABASES, f"{FAILURE_HEADER}You do not have a 'default' database configuration in your project's DATABASES configuration variable. Check the start of Chapter 5.{FAILURE_FOOTER}")
-
+    
     def test_gitignore_for_database(self):
         """
         If you are using a Git repository and have set up a .gitignore, checks to see whether the database is present in that file.
         """
         git_base_dir = os.popen('git rev-parse --show-toplevel').read().strip()
-
+        
         if git_base_dir.startswith('fatal'):
             warnings.warn("You don't appear to be using a Git repository for your codebase. Although not strictly required, it's *highly recommended*. Skipping this test.")
         else:
             gitignore_path = os.path.join(git_base_dir, '.gitignore')
-
+            
             if os.path.exists(gitignore_path):
                 self.assertTrue(self.does_gitignore_include_database(gitignore_path), f"{FAILURE_HEADER}Your .gitignore file does not include 'db.sqlite3' -- you should exclude the database binary file from all commits to your Git repository.{FAILURE_FOOTER}")
             else:
@@ -174,7 +174,7 @@ class Chapter5AdminInterfaceTests(TestCase):
         self.assertTrue('<div class="text"><a href="?o=3">Url</a></div>' in response_body, f"{FAILURE_HEADER}The 'Url' (stylised that way!) column could not be found in the admin interface for the Page model -- if it is present, is it in the correct order?{FAILURE_FOOTER}")
 
         # Is the TestPage1 page present, and in order?
-        expected_str = '<tr><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="1" class="action-select"></td><th class="field-title"><a href="/admin/rango/page/1/change/">TestPage1</a></th><td class="field-category nowrap">TestCategory</td><td class="field-url">https://www.google.com</td></tr>'
+        expected_str = '<tr class="row1"><td class="action-checkbox"><input type="checkbox" name="_selected_action" value="1" class="action-select"></td><th class="field-title"><a href="/admin/rango/page/1/change/">TestPage1</a></th><td class="field-category nowrap">TestCategory</td><td class="field-url">https://www.google.com</td></tr>'
         self.assertTrue(expected_str in response_body, f"{FAILURE_HEADER}We couldn't find the correct output in the Page view within the admin interface for page listings. Did you complete the exercises, adding extra columns to the admin view for this model? Are the columns in the correct order?{FAILURE_FOOTER}")
 
 
